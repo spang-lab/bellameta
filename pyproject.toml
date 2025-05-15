@@ -1,0 +1,15 @@
+[build-system]
+requires = [
+    "setuptools>=61.0",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "bellameta"
+version = "0.0.1"
+description = "Metadata micro service for FDLP"
+readme = "README.md"
+authors = [
+    {name = "Paul Huettl"},
+    {name = "Lukas Wolfseher"},
+]
