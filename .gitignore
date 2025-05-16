@@ -1,9 +1,6 @@
 # Config
 .env
 
-# Data and test data folders
-data/*
-
 # IDE.related folders
 .vscode/
 .idea/
