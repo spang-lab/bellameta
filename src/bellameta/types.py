@@ -1,4 +1,4 @@
-from bellameta.utils import get_config
+from bellameta.utils import get_config, custom_title
 
 class BellametaType:
     ''' 
@@ -25,15 +25,12 @@ class BellametaType:
         return cls.from_str(s)
     
     def __init_subclass__(cls, values):
-        # TODO: some black magic here
         super().__init_subclass__()
-        # cls.values = values
-        # cls._key_map = {}
         if not hasattr(cls, 'values') or values:
             cls.values = values
             cls._key_map = {}
             for value in list(values.keys()):
-                attr_name = value.replace(" ", "_").title()
+                attr_name = custom_title(value.replace(" ", "_"))
                 attr_value = type(f"{cls.__name__}{attr_name}", (), {
                     'to_string': classmethod(lambda cls, original_key=value: original_key),
                     # TODO: we do not use this anymore

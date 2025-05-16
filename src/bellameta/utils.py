@@ -53,3 +53,25 @@ def get_config(env_path: str|None = None):
     with open(CONFIG_PATH, "r") as f:
         config_data = yaml.load(f)
         return config_data
+
+def custom_title(text):
+    '''
+    Transform a possibly mispelled text into a consistent title
+    '''
+
+    result = []
+    make_upper = True
+    
+    for char in text:
+        if char.isalpha():
+            if make_upper:
+                result.append(char.upper())
+            else:
+                # Preserve existing case
+                result.append(char)
+            make_upper = False
+        else:
+            result.append(char)
+            make_upper = True
+            
+    return ''.join(result)
