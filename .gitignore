@@ -1,8 +1,6 @@
-# Config
-.env
-
 # Distribution
 build/*
+dist/*
 
 # IDE.related folders
 .vscode/

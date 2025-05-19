@@ -45,12 +45,12 @@ def get_config(env_path: str|None = None):
     success = load_dotenv(env_path)
     if not success:
         raise RuntimeError("No valid .env file found. Make sure to create a .env file at the root of the repository defining CONFIG_PATH.")
-    CONFIG_PATH = os.getenv('CONFIG_PATH')
-    if not os.path.exists(CONFIG_PATH):
+    BELLAMETA_CONFIG_PATH = os.getenv('BELLAMETA_CONFIG_PATH')
+    if not os.path.exists(BELLAMETA_CONFIG_PATH):
         raise RuntimeError("Specified path does not exists. Please define CONFIG_PATH in .env to be a path to a yaml config.")
     yaml = YAML(typ="rt")
     yaml.preserve_quotes = True
-    with open(CONFIG_PATH, "r") as f:
+    with open(BELLAMETA_CONFIG_PATH, "r") as f:
         config_data = yaml.load(f)
         return config_data
 

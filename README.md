@@ -10,15 +10,15 @@ via our custom digital pathology API `bellapi`.
 
 The source code is currently hosted under [https://github.com/spang-lab/bellameta](https://github.com/spang-lab/bellameta).
 
+Binary installers are available at PyPi.
+
 ```sh
-# after cloning the repository
-cd bellameta
-pip install .
+pip install bellameta
 ```
 
 ## Usage
 
-Under [docs/template.env](docs/template.env) you find a simple template for an .env file that needs to be created at the root of the repository holding 
+Under [docs/.env](docs/.env) you find a simple template for an .env file that needs to be located in your current environment and hold
 the path to a `yaml` config file. A minimal config file is provided under [docs/bellameta.yaml](docs/bellameta.yaml).
 This config defines the valid `Cohort` and `Task` types accesible by the package:
 
