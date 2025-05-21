@@ -23,6 +23,9 @@ the path to a `yaml` config file. A minimal config file is provided under [docs/
 This config defines the valid `Cohort` and `Task` types accesible by the package:
 
 ```python
+from dotenv import load_dotenv
+load_dotenv()
+
 from bellameta.types import Cohort
 print(Cohort.list())
 ```
