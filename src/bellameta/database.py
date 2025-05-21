@@ -4,6 +4,7 @@ import sqlite3
 import pandas as pd
 
 from bellameta.utils import sqlite_connection
+from bellameta import constants
 
 
 
@@ -35,8 +36,8 @@ class Db():
         Bulk insert of metadata into the specified metadata table
     '''
 
-    def __init__(self, sqlite_path: str, tables = ['state', 'cohort', 'patient', 'section', 'tag', 'stain', 'task', 'subtype', 'year', 'gleason_grade']):
-        self.sqlite_path = sqlite_path
+    def __init__(self, tables = ['state', 'cohort', 'patient', 'section', 'tag', 'stain', 'task', 'subtype', 'year', 'gleason_grade']):
+        self.sqlite_path = constants.DB_PATH
         self.tables = tables
         self._initialize_db()
 
