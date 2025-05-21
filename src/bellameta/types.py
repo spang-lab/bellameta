@@ -1,3 +1,5 @@
+
+from bellameta import constants
 from bellameta.utils import get_config, custom_title
 
 class BellametaType:
@@ -61,12 +63,10 @@ class BellametaType:
     def list(cls):
         return list(cls.values.keys())
 
-config_data = get_config()
-
 # Each new type can be specified via a new entry in the config_data yaml
-class Cohort(BellametaType, values=config_data['COHORTS']):
+class Cohort(BellametaType, values=constants.COHORTS):
     pass
 
-class Task(BellametaType, values=config_data['TASKS']):
+class Task(BellametaType, values=constants.TASKS):
     pass
 

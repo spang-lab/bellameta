@@ -27,10 +27,33 @@ def sqlite_connection(func):
                 raise e
     return wrapper
 
-def get_config(env_path: str|None = None):
+def get_env(env_path: str|None = None):
+    '''
+    Searches for a .env file and loads it.
+
+    Parameters
+    ----------
+    env_path : str|None
+        Path to the .env file. If stored at the root of the repository
+        load_dotenv will find it automatically.
+
+    Raises
+    ------
+        RuntimeError if no .env file is found
+
+    Return
+    ------
+        True if .env file was found
+    '''
+
+    success = load_dotenv(env_path)
+    if not success:
+        raise RuntimeError("No valid .env file found. Make sure to create a .env file at the root of the repository defining CONFIG_PATH.")
+    return success
+
+def get_config(config_path: str):
     '''
     Gets the config stored in a .yaml file under the path specified in the .env file
-
     Parameters
     ----------
     env_path : str|None
@@ -39,18 +62,13 @@ def get_config(env_path: str|None = None):
     
     Return
     ------
-    Contents of the yaml file
-
+        Contents of the yaml file
     '''
-    success = load_dotenv(env_path)
-    if not success:
-        raise RuntimeError("No valid .env file found. Make sure to create a .env file at the root of the repository defining CONFIG_PATH.")
-    BELLAMETA_CONFIG_PATH = os.getenv('BELLAMETA_CONFIG_PATH')
-    if not os.path.exists(BELLAMETA_CONFIG_PATH):
+    if not os.path.exists(config_path):
         raise RuntimeError("Specified path does not exists. Please define CONFIG_PATH in .env to be a path to a yaml config.")
     yaml = YAML(typ="rt")
     yaml.preserve_quotes = True
-    with open(BELLAMETA_CONFIG_PATH, "r") as f:
+    with open(config_path, "r") as f:
         config_data = yaml.load(f)
         return config_data
 
