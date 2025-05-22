@@ -34,8 +34,6 @@ print(Cohort.list())
 In order to add metadata to a cohort of scans, a child class of the abstract base class `Metadata` needs to be implemented:
 
 ```python
-from pamly import Diagnosis, Stain
-
 from bellameta.database import Db
 from bellameta.types import Cohort, Task
 from bellameta.base_metadata import Metadata

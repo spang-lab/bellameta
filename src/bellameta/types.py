@@ -1,3 +1,4 @@
+import pamly
 
 from bellameta import constants
 from bellameta.utils import get_config, custom_title
@@ -47,7 +48,7 @@ class BellametaType:
     
     @classmethod
     def from_str(cls, s: str):
-        clean = s.replace(" ", "_").title()
+        clean = custom_title(s.replace(" ", "_"))
         if clean in vars(cls).keys():
             return getattr(cls, clean)
         else:
@@ -68,5 +69,11 @@ class Cohort(BellametaType, values=constants.COHORTS):
     pass
 
 class Task(BellametaType, values=constants.TASKS):
+    pass
+
+class Subtype(BellametaType, values={k: v for v, k in enumerate([item.to_string() for item in pamly.Diagnosis.list()])}):
+    pass
+
+class Stain(BellametaType, values={k: v for v, k in enumerate([item.to_string() for item in pamly.Stain.list()])}):
     pass
 

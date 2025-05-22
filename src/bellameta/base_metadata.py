@@ -1,10 +1,9 @@
 from typing import List
 from abc import ABC, abstractmethod
-from pamly import Stain
 
 from bellameta.utils import sqlite_connection
 from bellameta.database import Db
-from bellameta.types import Cohort, Task
+from bellameta.types import Cohort, Task, Stain
 
 class Metadata(ABC):
     '''
