@@ -36,7 +36,7 @@ class Db():
         Bulk insert of metadata into the specified metadata table
     '''
 
-    def __init__(self, tables = ['state', 'cohort', 'patient', 'section', 'tag', 'stain', 'task', 'subtype', 'year', 'gleason_grade']):
+    def __init__(self, tables = constants.DEFAULT_TABLES):
         self.sqlite_path = constants.DB_PATH
         self.tables = tables
         self._initialize_db()
