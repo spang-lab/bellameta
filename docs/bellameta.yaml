@@ -4,3 +4,6 @@ COHORTS:
 
 TASKS:
   Subtyping: 0
+
+LABEL_TABLE_NAME:
+  Subtyping: subtype

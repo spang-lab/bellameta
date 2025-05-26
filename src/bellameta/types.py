@@ -1,9 +1,10 @@
+import abc
 import pamly
 
 from bellameta import constants
 from bellameta.utils import get_config, custom_title
 
-class BellametaType:
+class BellametaType(type):
     ''' 
     A class representing the base metadata type serving as a blue print for child classes.
 
@@ -26,7 +27,8 @@ class BellametaType:
 
     def __new__(cls, s: str):
         return cls.from_str(s)
-    
+
+ 
     def __init_subclass__(cls, values):
         super().__init_subclass__()
         if not hasattr(cls, 'values') or values:
@@ -69,11 +71,19 @@ class Cohort(BellametaType, values=constants.COHORTS):
     pass
 
 class Task(BellametaType, values=constants.TASKS):
+    @classmethod
+    def to_label_table_name(cls):
+        '''
+        Mathod to map the task to its corresponding labels table
+        '''
+        
+        return constants.LABEL_TABLE_NAME[cls.to_string()]
+    pass
+
+class Stain(BellametaType, values={k: v for v, k in enumerate([item.to_string() for item in pamly.Stain.list()])}):
     pass
 
 class Subtype(BellametaType, values={k: v for v, k in enumerate([item.to_string() for item in pamly.Diagnosis.list()])}):
     pass
 
-class Stain(BellametaType, values={k: v for v, k in enumerate([item.to_string() for item in pamly.Stain.list()])}):
-    pass
 
